@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Happy New Year Avani ❤️</title>
+
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+
+body {
+  height: 100vh;
+  background: radial-gradient(circle at top, #1a1a2e, #000);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  color: white;
+}
+
+/* Card */
+.card {
+  width: 92%;
+  max-width: 360px;
+  background: rgba(255,255,255,0.12);
+  backdrop-filter: blur(14px);
+  border-radius: 22px;
+  padding: 22px;
+  text-align: center;
+  box-shadow: 0 0 40px rgba(255,255,255,0.2);
+  animation: fadeIn 2s ease;
+}
+
+/* Image */
+.card img {
+  width: 100%;
+  border-radius: 18px;
+  margin-bottom: 14px;
+  display: none;
+  box-shadow: 0 0 25px rgba(255,182,193,0.45);
+}
+
+/* Text */
+h1 {
+  font-size: 22px;
+  margin-bottom: 6px;
+}
+
+.name {
+  font-size: 26px;
+  font-weight: bold;
+  background: linear-gradient(90deg, #ff9a9e, #fad0c4);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: glow 2s infinite alternate;
+  margin-bottom: 12px;
+}
+
+p {
+  font-size: 14px;
+  opacity: 0.9;
+  margin-bottom: 16px;
+  line-height: 1.6;
+}
+
+/* Button */
+button {
+  padding: 12px 26px;
+  border-radius: 30px;
+  border: none;
+  cursor: pointer;
+  background: linear-gradient(90deg, #ff512f, #dd2476);
+  color: white;
+  font-size: 14px;
+  transition: transform 0.3s;
+}
+
+button:hover {
+  transform: scale(1.08);
+}
+
+/* Secret message */
+.secret {
+  display: none;
+  margin-top: 16px;
+  font-size: 14px;
+  line-height: 1.8;
+  color: #ffeef3;
+}
+
+/* Countdown */
+#countdown {
+  font-size: 16px;
+  margin-bottom: 14px;
+  color: #ffd1dc;
+}
+
+/* Fireworks dots */
+.firework {
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  background: white;
+  border-radius: 50%;
+  animation: explode 1.5s infinite ease-out;
+  opacity: 0;
+}
+
+@keyframes explode {
+  0% { transform: scale(0); opacity: 1; }
+  100% { transform: scale(16); opacity: 0; }
+}
+
+@keyframes glow {
+  from { text-shadow: 0 0 10px #ff9a9e; }
+  to { text-shadow: 0 0 25px #fad0c4; }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+</style>
+</head>
+
+<body>
+
+<!-- Background Music -->
+<audio id="bgMusic" loop>
+  <source src="music.mp3" type="audio/mpeg">
+</audio>
+
+<div class="card">
+
+  <!-- PHOTO -->
+  <img id="photo" src="our-photo.jpg" alt="Us ❤️">
+
+  <h1>🎆 Happy New Year 🎆</h1>
+  <div class="name">Avani ❤️</div>
+
+  <div id="countdown"></div>
+
+  <p>
+    A new year, a new beginning,<br>
+    and my favorite part is you ✨
+  </p>
+
+  <button onclick="reveal()">Tap to Reveal 💖</button>
+
+  <div class="secret" id="secretMessage">
+    Avani,<br><br>
+
+    Loving you has been the most beautiful
+    thing I never planned but always needed.<br><br>
+
+    You became my calm, my comfort,
+    and my happiness without effort.<br><br>
+
+    This year, I don’t promise perfection.
+    I promise honesty, growth,
+    and choosing you every single day.<br><br>
+
+    No matter what the future holds,
+    remember this —
+    <b>my heart has always been yours.</b><br><br>
+
+    Forever & always ❤️
+  </div>
+
+</div>
+
+<script>
+/* Reveal */
+function reveal() {
+  document.getElementById("photo").style.display = "block";
+  document.getElementById("secretMessage").style.display = "block";
+  document.getElementById("bgMusic").play();
+}
+
+/* Countdown */
+const targetDate = new Date("January 1, 2026 00:00:00").getTime();
+setInterval(() => {
+  const now = new Date().getTime();
+  const diff = targetDate - now;
+
+  const d = Math.floor(diff / (1000 * 60 * 60 * 24));
+  const h = Math.floor((diff / (1000 * 60 * 60)) % 24);
+  const m = Math.floor((diff / (1000 * 60)) % 60);
+  const s = Math.floor((diff / 1000) % 60);
+
+  document.getElementById("countdown").innerHTML =
+    `⏳ ${d}d ${h}h ${m}m ${s}s`;
+}, 1000);
+
+/* Fireworks */
+function firework() {
+  const f = document.createElement("div");
+  f.className = "firework";
+  f.style.left = Math.random() * window.innerWidth + "px";
+  f.style.top = Math.random() * window.innerHeight + "px";
+  document.body.appendChild(f);
+  setTimeout(() => f.remove(), 1500);
+}
+setInterval(firework, 500);
+</script>
+
+</body>
+</html>
